@@ -1,20 +1,20 @@
 # audio-ear
 
-Language: **English** | [한국어](README_KO.md)
+언어: [English](README.md) | **한국어**
 
-Reference/test WAV A/B comparison toolkit for drum and synth sound design.
+드럼/신스 사운드 디자인을 위한 레퍼런스/테스트 WAV A/B 비교 툴킷입니다.
 
-`audio-ear` helps you quantify what your ears hear:
-- transient click/body balance
-- low-end decay mismatch
-- pitch center and pitch drift
-- resonance/ring/formant shifts
-- harmonic balance (including 1.5x partial often tied to OSC2-like character)
+`audio-ear`는 귀로 느끼는 차이를 수치로 정리해줍니다.
+- 트랜지언트 click/body 밸런스
+- 저역 감쇄(Decay) 불일치
+- 피치 중심과 시간축 피치 드리프트
+- resonance/ring/formant 변화
+- 부분음 밸런스(특히 OSC2 성격과 연결되는 1.5배 성분)
 
-## Requirements
+## 요구 사항
 
 - Python 3.9+
-- `ffmpeg`, `ffprobe`, `sox` in PATH (quick analysis)
+- `ffmpeg`, `ffprobe`, `sox` 설치 및 PATH 등록(Quick 분석에 필요)
 
 ## Quick Compare
 
@@ -57,15 +57,15 @@ bash scripts/run_ear_pipeline.sh /abs/path/A.wav /abs/path/B.wav /tmp/ear-run \
   --preset-b /abs/path/preset_after.json
 ```
 
-## Using With LLM Agents (Codex/Claude)
+## LLM Agent 연동 (Codex/Claude)
 
-You can use `audio-ear` as an "objective ear" inside an agent loop:
-1. compare reference vs current render
-2. extract measurable gaps
-3. modify synth params or DSP
-4. re-render and re-compare
+`audio-ear`를 에이전트 루프의 "객관적 귀"로 사용할 수 있습니다.
+1. 레퍼런스와 현재 렌더 비교
+2. 정량 지표로 차이 추출
+3. 파라미터/DSP 수정
+4. 재렌더 후 재비교
 
-### Agent Prompt Template
+### 에이전트 프롬프트 템플릿
 
 ```text
 Use audio-ear to compare:
@@ -81,7 +81,7 @@ Tasks:
 4) Keep tonal balance priority over loudness.
 ```
 
-### Example: Codex/Claude Iteration Prompt
+### 예시: Codex/Claude 반복 튜닝 프롬프트
 
 ```text
 Compare /tmp/ref_tom_h.wav and /tmp/acidbros_ht_factory.wav using audio-ear.
@@ -96,7 +96,7 @@ Output:
 - paths to generated WAV and report files
 ```
 
-### Example: Stop Conditions For Auto-Tuning
+### 예시: 자동 최적화 중단 조건
 
 ```text
 Repeat render+compare up to 10 iterations, stop early when all are true:
